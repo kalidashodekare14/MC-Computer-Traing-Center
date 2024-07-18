@@ -4,6 +4,7 @@ import Director from '../../Components/Director/Director';
 import Facilities from '../../Components/Facilities/Facilities';
 import Counter from '../../Components/Counter/Counter';
 import Gellery from '../../Components/Gellery/Gellery';
+import Testimonials from '../../Components/Testimonials/Testimonials';
 
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
             <Facilities></Facilities>
             <Counter></Counter>
             <Gellery></Gellery>
+            <Testimonials></Testimonials>
         </div>
     );
 };

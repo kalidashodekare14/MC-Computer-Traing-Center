@@ -1,0 +1,3 @@
+.bg-success{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.672), rgba(0, 0, 0, 0.649), rgba(0, 0, 0, 0.661)), url(../../assets/success.jpg);
+}
