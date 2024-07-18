@@ -1,0 +1,9 @@
+.banner{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.427), rgba(0, 0, 0, 0.427), rgba(0, 0, 0, 0.512)), url(../../assets/banner.jpg);
+}
+.banner1{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.427), rgba(0, 0, 0, 0.427), rgba(0, 0, 0, 0.512)), url(../../assets/banner1.jpg);
+}
+.banner2{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.427), rgba(0, 0, 0, 0.427), rgba(0, 0, 0, 0.512)), url(../../assets/banner2.jpg);
+}
