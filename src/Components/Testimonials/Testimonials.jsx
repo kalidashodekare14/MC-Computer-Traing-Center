@@ -31,7 +31,7 @@ const Testimonials = () => {
     };
 
     return (
-        <div className='my-10 bg-success text-white bg-center bg-cover bg-no-repeat h-[70vh] py-10'>
+        <div className='my-10 bg-success bg-fixed text-white bg-center bg-cover bg-no-repeat h-[70vh] py-10'>
             <Titles>Student Testimonials</Titles>
             <div className='lg:mx-32 mx-3 my-10'>
                 <Carousel

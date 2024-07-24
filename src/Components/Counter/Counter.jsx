@@ -7,7 +7,7 @@ import CountUp from 'react-countup';
 
 const Counter = () => {
     return (
-        <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4  bg bg-center bg-cover h-[50vh] my-20'>
+        <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4  bg bg-fixed bg-center bg-cover h-[50vh] my-20'>
             <div className='text-white flex flex-col justify-center items-center'>
                 <div className=' bg-[#20d7ab] text-3xl w-16 h-16 rounded-full flex justify-center items-center'>
                     <MdLibraryBooks className='' />
