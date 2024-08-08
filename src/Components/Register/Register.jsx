@@ -1,57 +1,41 @@
-
-import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../Provider/AuthProvider";
+import { Link } from "react-router-dom";
+import registerImage from '../../assets/signup.png'
+import { useForm } from "react-hook-form"
+import useAuth from '../../Hooks/useAuth/useAuth'
 import Swal from "sweetalert2";
-import register from '../../assets/signup.png'
-
 
 const Register = () => {
-  const { creactUser } = useContext(AuthContext);
-  console.log(creactUser);
-  const navigate = useNavigate();
 
 
-  const handleSignUp = async e => {
-    e.preventDefault();
-    const form = e.target;
-    const email = form.email.value;
-    const name = form.name.value;
+  const { signUpSystem } = useAuth()
 
-    const password = form.password.value;
-    const confirmPassword = form.rePassword.value;
-    console.log(email, name, password, confirmPassword);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
 
-    if (password !== confirmPassword) {
-      alert('Passwords do not match');
-      return;
-    }
-
-
-    try {
-      const result = await creactUser(email, password);
-      console.log(result);
-      navigate('/');
-
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Your work has been saved",
-        showConfirmButton: false,
-        timer: 1500
-      });
-
-
-
-
-    }
-
-
-    catch (err) {
-      //   console.log(err);
-    }
-
+  const onSubmit = (data) => {
+    console.log(data.email, data.password)
+    signUpSystem(data.email, data.password)
+      .then(res => {
+        console.log(res.user)
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Your Registration Successfuly",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      })
+      .catch(error => {
+        console.log(error.message)
+      })
   }
+
+
+
+
 
   return (
     <div>
@@ -60,11 +44,11 @@ const Register = () => {
           <div className='flex justify-center items-center min-h-[calc(100vh-306px)]'>
             <div className='flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-4xl p-5'>
               <div className="w-[50%]">
-                <img src={register} alt="" />
+                <img src={registerImage} alt="" />
               </div>
               <div className='w-full  md:px-8 lg:w-1/2'>
                 <p className='mt-3 text-4xl'>Sign Up</p>
-                <form onSubmit={handleSignUp}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                   <div className='mt-4 border-b-[1.5px] border-[#000]' >
                     <label
                       className='block mb-2 text-sm font-medium text-gray-600 '
@@ -72,11 +56,11 @@ const Register = () => {
                     >
                     </label>
                     <input
+                      {...register("name")}
                       className="input w-full "
                       id='LoggingName'
                       autoComplete='Name'
-
-                      placeholder="Enter Your Email"
+                      placeholder="Enter Your Name"
                       name='name'
                       type='Name'
                     />
@@ -88,6 +72,7 @@ const Register = () => {
                     >
                     </label>
                     <input
+                      {...register("email")}
                       className="input w-full "
                       id='LoggingEmailAddress'
                       autoComplete='email'
@@ -105,6 +90,7 @@ const Register = () => {
                       </label>
                     </div>
                     <input
+                      {...register("password")}
                       className="input w-full"
                       id='loggingPassword'
                       autoComplete='current-password'
@@ -122,6 +108,7 @@ const Register = () => {
                       </label>
                     </div>
                     <input
+                      {...register("re_password")}
                       className="input w-full"
                       id='rePassword'
                       autoComplete='current-password'
@@ -145,16 +132,8 @@ const Register = () => {
                     </button>
                   </div>
                 </form>
-
-
-
-
-
-
-
-
                 <div>
-                  <Link to='/I am Already Member'> <h1 className="underline underline-offset-2">Create Your Account</h1></Link>
+                  <Link to='/login'> <h1 className="underline underline-offset-2">Create Your Account</h1></Link>
                 </div>
               </div>
             </div>

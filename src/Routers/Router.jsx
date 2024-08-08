@@ -7,6 +7,9 @@ import Gellery from "../Pages/Gellery/Gellery";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import Login from "../Components/Login/Login";
 import Register from "../Components/Register/Register";
+import Dashboard from "../Layout/Dashboard";
+import Profile from "../Components/Dashboard/Profile/Profile";
+
 
 
 const router = createBrowserRouter([
@@ -44,6 +47,17 @@ const router = createBrowserRouter([
             }
         ]
     },
+    {
+        path: '/dashboard',
+        element: <Dashboard></Dashboard>,
+        children: [
+            {
+                path: '/dashboard/profile',
+                element: <Profile></Profile>
+            }
+        ]
+    }
+  
 
 
 ]);

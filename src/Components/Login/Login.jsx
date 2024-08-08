@@ -1,55 +1,40 @@
-import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../Provider/AuthProvider";
-import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 import loginImage from '../../assets/logins.png'
 import { FaFacebookSquare } from "react-icons/fa";
+import { useForm } from "react-hook-form";
+import useAuth from "../../Hooks/useAuth/useAuth";
+import Swal from "sweetalert2";
 
 const Login = () => {
 
-  const { signIn, signInWithGoogle } = useContext(AuthContext);
-  const navigate = useNavigate();
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
-    console.log(email, password);
+  const { loginSystem } = useAuth()
 
 
-    signIn(email, password)
-      .then(result => {
-        console.log(result.user);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
+
+  const onSubmit = (data) => {
+    console.log(data)
+    loginSystem(data.email, data.password)
+      .then(res => {
+        console.log(res.user)
         Swal.fire({
-          title: "User Login successfully",
-          showClass: {
-            popup: `
-                    animate__animated
-                    animate__fadeInUp
-                    animate__faster
-                  `
-          },
-          hideClass: {
-            popup: `
-                    animate__animated
-                    animate__fadeOutDown
-                    animate__faster
-                  `
-          }
+          position: "center",
+          icon: "success",
+          title: "Your Login Successfuly",
+          showConfirmButton: false,
+          timer: 1500
         });
-
-        navigate('/');
       })
-
+      .catch(error => {
+        console.log(error.message)
+      })
   }
 
-  const handleSocialLogin = (e) => {
-    e.preventDefault();
-    signInWithGoogle()
-    navigate('/')
-
-  }
   return (
     <div>
       <div className='flex justify-center items-center min-h-screen'>
@@ -61,7 +46,7 @@ const Login = () => {
             <div className='flex justify-center mx-auto'>
             </div>
             <p className='mt-3 text-4xl'>Sign In</p>
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <div className='mt-4 border-b-[1.5px] border-[#000]'>
                 <label
                   className='block mb-2 text-sm font-medium text-gray-600 '
@@ -70,6 +55,7 @@ const Login = () => {
 
                 </label>
                 <input
+                  {...register("email")}
                   className="input w-full "
                   id='LoggingEmailAddress'
                   autoComplete='email'
@@ -89,6 +75,7 @@ const Login = () => {
                   </label>
                 </div>
                 <input
+                  {...register("password")}
                   className="input w-full "
                   id='loggingPassword'
                   autoComplete='current-password'
@@ -114,7 +101,7 @@ const Login = () => {
             </form>
             <div className="flex items-center gap-[16px] my-[20px]">
               <h1 className="font-bold">Or Login with</h1>
-              <button onClick={handleSocialLogin}>
+              <button>
                 <FcGoogle className="text-4xl" />
               </button>
               <FaFacebookSquare className="text-4xl text-[#3b5998]" />

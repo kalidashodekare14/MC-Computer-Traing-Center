@@ -1,54 +1,46 @@
 import React, { useContext } from 'react';
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { AuthContext } from '../Provider/AuthProvider';
+import useAuth from '../../Hooks/useAuth/useAuth'
 
 const Navbar = () => {
 
-
-    const{user, logOut}= useContext(AuthContext);
-    const handleLogOut = ()=>{
-        logOut()
-        .then()
-        .catch()
-      }
-
-
     const [isOpen, setIsOpen] = useState(false);
+    const { user } = useAuth()
 
     const links = <>
         <NavLink
             to="/"
             className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "border-b-2 border-[#20d7ab] my-2 text-[#ffffffc3] transition-colors duration-300 transform dark:text-gray-200 hover:text-[#20d7ab] dark:hover:text-blue-400 md:mx-4 md:my-0" : "my-2 text-[#ffffffc3] transition-colors duration-300 transform dark:text-gray-200 hover:text-[#20d7ab] dark:hover:text-blue-400 md:mx-4 md:my-0"
+                isPending ? "pending" : isActive ? "border-b-2 border-[#20d7ab] my-2 text-[#20d7ab] transition-colors duration-300 transform dark:text-gray-200 hover:text-[#20d7ab] dark:hover:text-blue-400 md:mx-4 md:my-0" : "my-2  transition-colors duration-300 transform dark:text-gray-200 hover:text-[#20d7ab] dark:hover:text-blue-400 md:mx-4 md:my-0"
             } >
             Home
         </NavLink>
         <NavLink
             to="/about-us"
             className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "border-b-2 border-[#20d7ab] my-2 text-[#ffffffc3] transition-colors duration-300 transform dark:text-gray-200 hover:text-[#20d7ab] dark:hover:text-blue-400 md:mx-4 md:my-0" : "my-2 text-[#ffffffc3] transition-colors duration-300 transform dark:text-gray-200 hover:text-[#20d7ab] dark:hover:text-blue-400 md:mx-4 md:my-0"
+                isPending ? "pending" : isActive ? "border-b-2 border-[#20d7ab] my-2 text-[#20d7ab] transition-colors duration-300 transform dark:text-gray-200 hover:text-[#20d7ab] dark:hover:text-blue-400 md:mx-4 md:my-0" : "my-2  transition-colors duration-300 transform dark:text-gray-200 hover:text-[#20d7ab] dark:hover:text-blue-400 md:mx-4 md:my-0"
             }>
             About Us
         </NavLink>
         <NavLink
             to="/courses"
             className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "border-b-2 border-[#20d7ab] my-2 text-[#ffffffc3] transition-colors duration-300 transform dark:text-gray-200 hover:text-[#20d7ab] dark:hover:text-blue-400 md:mx-4 md:my-0" : "my-2 text-[#ffffffc3] transition-colors duration-300 transform dark:text-gray-200 hover:text-[#20d7ab] dark:hover:text-blue-400 md:mx-4 md:my-0"
+                isPending ? "pending" : isActive ? "border-b-2 border-[#20d7ab] my-2 text-[#20d7ab] transition-colors duration-300 transform dark:text-gray-200 hover:text-[#20d7ab] dark:hover:text-blue-400 md:mx-4 md:my-0" : "my-2  transition-colors duration-300 transform dark:text-gray-200 hover:text-[#20d7ab] dark:hover:text-blue-400 md:mx-4 md:my-0"
             } >
-            Courses
+            Courses List
         </NavLink>
         <NavLink
             to="/gellery"
             className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "border-b-2 border-[#20d7ab] my-2 text-[#ffffffc3] transition-colors duration-300 transform dark:text-gray-200 hover:text-[#20d7ab] dark:hover:text-blue-400 md:mx-4 md:my-0" : "my-2 text-[#ffffffc3] transition-colors duration-300 transform dark:text-gray-200 hover:text-[#20d7ab] dark:hover:text-blue-400 md:mx-4 md:my-0"
+                isPending ? "pending" : isActive ? "border-b-2 border-[#20d7ab] my-2 text-[#20d7ab] transition-colors duration-300 transform dark:text-gray-200 hover:text-[#20d7ab] dark:hover:text-blue-400 md:mx-4 md:my-0" : "my-2  transition-colors duration-300 transform dark:text-gray-200 hover:text-[#20d7ab] dark:hover:text-blue-400 md:mx-4 md:my-0"
             } >
             Gellery
         </NavLink>
         <NavLink
             to="/contact-us"
             className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "border-b-2 border-[#20d7ab] my-2 text-[#ffffffc3] transition-colors duration-300 transform dark:text-gray-200 hover:text-[#20d7ab] dark:hover:text-blue-400 md:mx-4 md:my-0" : "my-2 text-[#ffffffc3] transition-colors duration-300 transform dark:text-gray-200 hover:text-[#20d7ab] dark:hover:text-blue-400 md:mx-4 md:my-0"
+                isPending ? "pending" : isActive ? "border-b-2 border-[#20d7ab] my-2 text-[#20d7ab] transition-colors duration-300 transform dark:text-gray-200 hover:text-[#20d7ab] dark:hover:text-blue-400 md:mx-4 md:my-0" : "my-2  transition-colors duration-300 transform dark:text-gray-200 hover:text-[#20d7ab] dark:hover:text-blue-400 md:mx-4 md:my-0"
             } >
             Contact Us
         </NavLink>
@@ -56,7 +48,7 @@ const Navbar = () => {
 
     return (
         <nav x-data="{ isOpen: false }" className="relative shadow dark:bg-gray-800">
-            <div className="w-full  absolute  z-40 bg-[#05090d83] px-6 py-4 mx-auto md:flex md:justify-between md:items-center">
+            <div className="w-full   bg-base-100 px-6 py-2 mx-auto md:flex md:justify-between md:items-center">
                 <div className="flex items-center justify-between">
                     <a href="#">
                         <h1 className='font-bold text-2xl text-[#000000c3]'>MC Computer</h1>
@@ -83,30 +75,25 @@ const Navbar = () => {
                     <div className="flex flex-col md:flex-row md:mx-6 bg-black lg:bg-opacity-0">
                         {links}
                     </div>
-
-
                     {
-                        user? 
-                        <>
-                        
-                    <button  onClick={handleLogOut} className="btn px-[30px] bg-[#20d7ab] text-white font-bold border-0">logOut</button>
-                    
-                        </>
-                        :
-                        <>
-                        <Link to='/login'>
-                    <button
-                   
-                    
-                    className="btn px-[30px] bg-[#20d7ab] text-white font-bold border-0">login</button>
-                    </Link>
-                        </>
+                        user ? (
+                            <Link to="/dashboard">
+                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                    <div className="w-10 rounded-full">
+                                        <img
+                                            alt="Tailwind CSS Navbar component"
+                                            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                    </div>
+                                </div>
+                            </Link>
+                        )
+                            : <Link to="/login">
+                                <button className='btn bg-opacity-0 border border-[#20d7ab] hover:bg-[#20d7ab] hover:border-[#20d7ab] text-white'>Login</button>
+                            </Link>
                     }
-
-                    {/* <Link to='/login'>
-                    <button className="btn px-[30px] bg-[#20d7ab] text-white font-bold border-0">login</button>
-                    </Link> */}
                 </div>
+
+
             </div>
         </nav>
 
