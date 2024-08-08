@@ -9,6 +9,9 @@ import Login from "../Components/Login/Login";
 import Register from "../Components/Register/Register";
 import Dashboard from "../Layout/Dashboard";
 import Profile from "../Components/Dashboard/Profile/Profile";
+import Classes from "../Components/Dashboard/Classes/Classes";
+import Support from "../Components/Dashboard/Support/Support";
+import Notish from "../Components/Dashboard/Notish/Notish";
 
 
 
@@ -54,7 +57,19 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/profile',
                 element: <Profile></Profile>
-            }
+            },
+            {
+                path: '/dashboard/classes',
+                element: <Classes></Classes>
+            },
+            {
+                path: '/dashboard/support',
+                element: <Support></Support>
+            },
+            {
+                path: '/dashboard/notish',
+                element: <Notish></Notish>
+            },
         ]
     }
   
