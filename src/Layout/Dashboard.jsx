@@ -1,19 +1,25 @@
 import React from 'react';
 import useAuth from '../Hooks/useAuth/useAuth'
 import { FaHandRock, FaUserCheck, FaUserGraduate } from 'react-icons/fa';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { MdOutlineOndemandVideo } from 'react-icons/md';
 import { AiFillNotification } from 'react-icons/ai';
 import { IoIosLogOut } from 'react-icons/io';
 
 const Dashboard = () => {
 
-    const { user } = useAuth()
+    const { user, logOutSystem } = useAuth()
+    const naviage = useNavigate()
+
+    const handleLogOutSystem = () => {
+        logOutSystem()
+        naviage('/')
+    }
 
     return (
         <div>
             <div className='flex'>
-                <div className='space-y-3 pt-3 w-52 border min-h-screen'>
+                <div className='relative space-y-3 pt-3 w-52 border min-h-screen'>
                     <div className='border-b pb-5 flex justify-center items-center'>
                         <div className='flex justify-center items-center w-20 h-20 border rounded-2xl'>
                             <FaUserGraduate className='text-4xl' />
@@ -66,15 +72,15 @@ const Dashboard = () => {
                             </NavLink>
                         </div>
                     </div>
-                    <div className=''>
-                        <div className='flex items-center space-x-3'>
-                            <IoIosLogOut />
-                            <h1>Logout</h1>
+                    <div className='fixed bottom-5 p-[10px]'>
+                        <div onClick={handleLogOutSystem} className='btn flex items-center space-x-3 w-full'>
+                            <IoIosLogOut className='text-2xl' />
+                            <h1 className='text-xl'>Logout</h1>
                         </div>
                     </div>
                 </div>
                 <div className='w-full border min-h-screen'>
-
+                    <Outlet></Outlet>
                 </div>
             </div>
         </div>

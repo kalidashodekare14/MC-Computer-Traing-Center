@@ -8,10 +8,11 @@ import ContactUs from "../Pages/ContactUs/ContactUs";
 import Login from "../Components/Login/Login";
 import Register from "../Components/Register/Register";
 import Dashboard from "../Layout/Dashboard";
-import Profile from "../Components/Dashboard/Profile/Profile";
+import Profile from "../Components/Dashboard/UserProfile/UserProfile";
 import Classes from "../Components/Dashboard/Classes/Classes";
 import Support from "../Components/Dashboard/Support/Support";
 import Notish from "../Components/Dashboard/Notish/Notish";
+import UserProfile from "../Components/Dashboard/UserProfile/UserProfile";
 
 
 
@@ -56,7 +57,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/dashboard/profile',
-                element: <Profile></Profile>
+                element: <UserProfile></UserProfile>
             },
             {
                 path: '/dashboard/classes',

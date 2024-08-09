@@ -1,13 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import registerImage from '../../assets/signup.png'
 import { useForm } from "react-hook-form"
 import useAuth from '../../Hooks/useAuth/useAuth'
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../Hooks/useAxiosPublic/useAxiosPublic";
 
 const Register = () => {
 
 
   const { signUpSystem } = useAuth()
+  const axiosPublic = useAxiosPublic()
+  const navigate = useNavigate()
 
   const {
     register,
@@ -20,22 +23,42 @@ const Register = () => {
     signUpSystem(data.email, data.password)
       .then(res => {
         console.log(res.user)
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Your Registration Successfuly",
-          showConfirmButton: false,
-          timer: 1500
-        });
+        const userInfo = {
+          name: data?.name,
+          email: data?.email,
+          studentId: '-',
+          dateOfBirth: '-',
+          gender: '-',
+          address: '-',
+          citizen: '-',
+          nationality: '-',
+          language: '-',
+          status: 'Unenrolled'
+        }
+        axiosPublic.post('/users-register', userInfo)
+          .then(res => {
+            console.log(res.data)
+            if (res.data.insertedId) {
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Your Registration Successfuly",
+                showConfirmButton: false,
+                timer: 1500
+              }) .then(() =>{
+                navigate('/dashboard/profile')
+              })
+            }
+          })
+          .catch(error => {
+            console.log(error.message)
+          })
+
       })
       .catch(error => {
         console.log(error.message)
       })
   }
-
-
-
-
 
   return (
     <div>
