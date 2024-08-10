@@ -3,6 +3,8 @@ import { FaThList, FaUserGraduate } from 'react-icons/fa';
 import useAuth from '../../../Hooks/useAuth/useAuth';
 import useAxiosPublic from '../../../Hooks/useAxiosPublic/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
+import ButtonWhite from '../../../Hooks/Button/ButtonWhite';
+import ButtonBlack from '../../../Hooks/Button/ButtonBlack';
 
 const UserProfile = () => {
 
@@ -21,8 +23,8 @@ const UserProfile = () => {
     console.log(student_profile)
 
     return (
-        <div className='w-full min-h-screen bg-[#f5f5f6] px-10'>
-            <div className='bg-white w-full  h-[100vh] shadow-lg px-10'>
+        <div className='w-full min-h-screen bg-[#f5f5f6] lg:px-10'>
+            <div className='bg-white w-full  h-[100vh] shadow-lg lg:px-10 px-5'>
                 <div className='flex items-center space-x-5 shadow-lg p-5 '>
                     <div className='border w-28 h-28 flex justify-center items-center rounded-full'>
                         <FaUserGraduate className='text-4xl' />
@@ -95,7 +97,7 @@ const UserProfile = () => {
                         </div>
                     </div>
                     <div className='text-center my-5'>
-                       
+                       <ButtonBlack>Update</ButtonBlack>
                     </div>
                 </div>
             </div>

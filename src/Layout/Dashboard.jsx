@@ -1,25 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useAuth from '../Hooks/useAuth/useAuth'
 import { FaHandRock, FaUserCheck, FaUserGraduate } from 'react-icons/fa';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { MdOutlineOndemandVideo } from 'react-icons/md';
 import { AiFillNotification } from 'react-icons/ai';
-import { IoIosLogOut } from 'react-icons/io';
+import { IoIosLogOut, IoIosMenu } from 'react-icons/io';
 
 const Dashboard = () => {
 
     const { user, logOutSystem } = useAuth()
     const naviage = useNavigate()
+    const [isOpen, setIsOpen] = useState(false)
 
     const handleLogOutSystem = () => {
         logOutSystem()
         naviage('/')
     }
 
+    const toggleSidebar = () =>{
+        setIsOpen(!isOpen)
+    }
+
     return (
         <div>
             <div className='flex'>
-                <div className='relative space-y-3 pt-3 w-52 border min-h-screen'>
+                <div className={`bg-white fixed z-10 inset-y-0 left-0 transform ${isOpen ? 'translate-x-0' : '-translate-x-full '} transition-transform duration-300 ease-in-out md:relative md:translate-x-0 space-y-3 pt-3 w-52 border min-h-screen`}>
                     <div className='border-b pb-5 flex justify-center items-center'>
                         <div className='flex justify-center items-center w-20 h-20 border rounded-2xl'>
                             <FaUserGraduate className='text-4xl' />
@@ -80,6 +85,9 @@ const Dashboard = () => {
                     </div>
                 </div>
                 <div className='w-full border min-h-screen'>
+                    <div className='md:hidden flex justify-end items-end p-3 border'>
+                        <IoIosMenu className='text-3xl cursor-pointer' onClick={toggleSidebar}></IoIosMenu>
+                    </div>
                     <Outlet></Outlet>
                 </div>
             </div>
